@@ -13,6 +13,7 @@ export async function POST(request: NextRequest) {
   if (authError) return authError
 
   try {
+    console.log('Chat API called')
     const body = await request.json()
     const { 
       chatId, 
@@ -22,6 +23,8 @@ export async function POST(request: NextRequest) {
       responseStyle = 'standard'
     } = body
 
+    console.log(`Processing message for chat: ${chatId}`)
+
     if (!chatId || !message) {
       return NextResponse.json(
         { error: 'Missing required fields' },
@@ -30,11 +33,14 @@ export async function POST(request: NextRequest) {
     }
 
     // Save user message
+    console.log('Saving user message to memory store...')
     await memoryStore.addMessage(chatId, 'user', message)
+    console.log('User message saved')
 
     // Retrieve relevant knowledge if enabled
     let knowledgeContext = ''
     if (useKnowledge) {
+      console.log('Retrieving relevant knowledge...')
       const relevantChunks = await retrieveRelevantChunks(message, 5)
       if (relevantChunks.length > 0) {
         knowledgeContext = relevantChunks
@@ -42,11 +48,14 @@ export async function POST(request: NextRequest) {
             `[Excerpt ${idx + 1} - Source: ${chunk.sourceName}]\n${chunk.content}`
           )
           .join('\n\n---\n\n')
+        console.log(`Retrieved ${relevantChunks.length} knowledge chunks`)
       }
     }
 
     // Build messages array
+    console.log('Fetching previous messages...')
     const allMessages = await memoryStore.getChatMessages(chatId)
+    console.log(`Found ${allMessages.length} previous messages`)
 
     const systemMessage = buildSystemMessage(
       useKnowledge,
@@ -64,6 +73,7 @@ export async function POST(request: NextRequest) {
     ]
 
     // Create streaming response
+    console.log('Creating OpenAI stream...')
     const stream = await openai.chat.completions.create({
       model: OPENAI_MODEL,
       messages: chatMessages,
@@ -71,6 +81,7 @@ export async function POST(request: NextRequest) {
       temperature: 0.7,
       max_tokens: responseStyle === 'deep' ? 2000 : responseStyle === 'concise' ? 500 : 1000,
     })
+    console.log('OpenAI stream created successfully')
 
     // Create a ReadableStream to send to client
     const encoder = new TextEncoder()

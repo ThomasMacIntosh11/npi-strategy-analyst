@@ -115,8 +115,9 @@ export default function ChatPanel({ chat, onChatUpdate, onNewChat }: ChatPanelPr
       }
     } catch (error: any) {
       if (error.name !== 'AbortError') {
-        console.error('Error sending message:', error)
-        alert('Failed to send message. Please try again.')
+        const errorMsg = error instanceof Error ? error.message : String(error)
+        console.error('Error sending message:', errorMsg)
+        alert(`Failed to send message: ${errorMsg}`)
       }
       setStreaming(false)
       setStreamingMessage('')
