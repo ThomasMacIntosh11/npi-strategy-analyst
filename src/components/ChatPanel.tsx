@@ -47,7 +47,7 @@ export default function ChatPanel({ chat, onChatUpdate, onNewChat }: ChatPanelPr
     }
 
     // Check if this is the first message before sending
-    const isFirstMessage = !chat.messages || chat.messages.length === 0
+    const isFirstMessage = !chat?.messages || chat.messages.length === 0
 
     try {
       setStreaming(true)
