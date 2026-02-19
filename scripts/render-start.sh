@@ -1,7 +1,10 @@
 #!/bin/bash
 
-echo "🗄️  Setting up database..."
-npx prisma db push --accept-data-loss
+set -e
+
+echo "🔧 Generating Prisma client..."
+npx prisma generate
+
 
 echo "🚀 Starting application..."
 npm start
