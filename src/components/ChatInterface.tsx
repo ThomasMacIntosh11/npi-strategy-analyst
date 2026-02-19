@@ -141,9 +141,9 @@ export default function ChatInterface() {
       />
       <ChatPanel
         chat={currentChat}
-        onChatUpdate={() => {
-          loadChats()
-          if (currentChatId) loadChat(currentChatId)
+        onChatUpdate={async () => {
+          await loadChats()
+          if (currentChatId) await loadChat(currentChatId)
         }}
         onNewChat={handleNewChat}
       />

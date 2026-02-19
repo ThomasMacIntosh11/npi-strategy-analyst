@@ -91,14 +91,16 @@ export default function ChatPanel({ chat, onChatUpdate, onNewChat }: ChatPanelPr
             const data = line.slice(6)
             if (data === '[DONE]') {
               setStreaming(false)
-              setStreamingMessage('')
               
               // Generate title for first message, then update UI
               if (isFirstMessage) {
                 await generateTitle(chatId, userMessage)
               } else {
-                onChatUpdate()
+                await onChatUpdate()
               }
+              
+              // Clear streaming message AFTER messages have been reloaded
+              setStreamingMessage('')
               break
             }
 
