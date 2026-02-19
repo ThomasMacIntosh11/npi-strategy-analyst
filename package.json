@@ -10,7 +10,9 @@
     "db:push": "prisma db push",
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "render:build": "npm install && npx prisma generate && npm run build",
+    "render:start": "npx prisma db push --accept-data-loss && npm start"
   },
   "dependencies": {
     "@prisma/client": "^5.19.0",
