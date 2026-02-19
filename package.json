@@ -11,7 +11,7 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
-    "render:build": "npm install && npx prisma generate && npm run build",
+    "render:build": "npm install --include=dev && npx prisma generate && npm run build",
     "render:start": "npx prisma db push --accept-data-loss && npm start"
   },
   "dependencies": {
