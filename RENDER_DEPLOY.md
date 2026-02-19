@@ -38,7 +38,7 @@ Click **"Advanced"** and add these environment variables:
 | `OPENAI_EMBED_MODEL` | `text-embedding-3-small` |
 | `WORKSHOP_ACCESS_CODE` | `NPI2030Vision` |
 | `SESSION_SECRET` | `random-32-char-string-here` |
-| `DATABASE_URL` | `file:./prisma/dev.db` |
+| `DATABASE_URL` | `file:./dev.db` |
 | `NODE_ENV` | `production` |
 
 **Generate a secure SESSION_SECRET:**
