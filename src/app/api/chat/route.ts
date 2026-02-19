@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/session'
-import { prisma } from '@/lib/prisma'
+import { memoryStore } from '@/lib/memory-store'
 import { openai, OPENAI_MODEL } from '@/lib/openai'
 import { buildSystemMessage } from '@/lib/prompts'
 import { retrieveRelevantChunks } from '@/lib/knowledge'
@@ -30,13 +30,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Save user message
-    await prisma.message.create({
-      data: {
-        chatId,
-        role: 'user',
-        content: message
-      }
-    })
+    await memoryStore.addMessage(chatId, 'user', message)
 
     // Retrieve relevant knowledge if enabled
     let knowledgeContext = ''
@@ -52,11 +46,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Build messages array
-    const messages = await prisma.message.findMany({
-      where: { chatId },
-      orderBy: { createdAt: 'asc' },
-      take: 20 // Last 20 messages for context
-    })
+    const allMessages = await memoryStore.getChatMessages(chatId)
 
     const systemMessage = buildSystemMessage(
       useKnowledge,
@@ -67,8 +57,8 @@ export async function POST(request: NextRequest) {
 
     const chatMessages = [
       { role: 'system' as const, content: systemMessage },
-      ...messages.map(m => ({
-        role: m.role as 'user' | 'assistant',
+      ...allMessages.map(m => ({
+        role: m.role as 'user' | 'assistant' | 'system',
         content: m.content
       }))
     ]
@@ -98,19 +88,7 @@ export async function POST(request: NextRequest) {
           }
 
           // Save assistant message
-          await prisma.message.create({
-            data: {
-              chatId,
-              role: 'assistant',
-              content: fullResponse
-            }
-          })
-
-          // Update chat timestamp
-          await prisma.chat.update({
-            where: { id: chatId },
-            data: { updatedAt: new Date() }
-          })
+          await memoryStore.addMessage(chatId, 'assistant', fullResponse)
 
           controller.enqueue(encoder.encode('data: [DONE]\n\n'))
           controller.close()
@@ -129,9 +107,10 @@ export async function POST(request: NextRequest) {
       },
     })
   } catch (error) {
-    console.error('Chat API error:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Chat API error:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to process message' },
+      { error: 'Failed to process message', details: errorMessage },
       { status: 500 }
     )
   }

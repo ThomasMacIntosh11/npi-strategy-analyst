@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/session'
-import { prisma } from '@/lib/prisma'
+import { memoryStore } from '@/lib/memory-store'
 
 interface Params {
   params: Promise<{
@@ -15,14 +15,7 @@ export async function GET(request: NextRequest, { params }: Params) {
 
   try {
     const { id } = await params
-    const chat = await prisma.chat.findUnique({
-      where: { id, deletedAt: null },
-      include: {
-        messages: {
-          orderBy: { createdAt: 'asc' }
-        }
-      }
-    })
+    const chat = await memoryStore.getChatWithMessages(id)
 
     if (!chat) {
       return NextResponse.json(
@@ -33,9 +26,10 @@ export async function GET(request: NextRequest, { params }: Params) {
 
     return NextResponse.json({ chat })
   } catch (error) {
-    console.error('Error fetching chat:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error fetching chat:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to fetch chat' },
+      { error: 'Failed to fetch chat', details: errorMessage },
       { status: 500 }
     )
   }
@@ -57,38 +51,41 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       )
     }
 
-    const chat = await prisma.chat.update({
-      where: { id },
-      data: { title }
-    })
+    const chat = await memoryStore.updateChatTitle(id, title)
+
+    if (!chat) {
+      return NextResponse.json(
+        { error: 'Chat not found' },
+        { status: 404 }
+      )
+    }
 
     return NextResponse.json({ chat })
   } catch (error) {
-    console.error('Error updating chat:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error updating chat:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to update chat' },
+      { error: 'Failed to update chat', details: errorMessage },
       { status: 500 }
     )
   }
 }
 
-// DELETE chat (soft delete)
+// DELETE chat
 export async function DELETE(request: NextRequest, { params }: Params) {
   const authError = await requireAuth(request)
   if (authError) return authError
 
   try {
     const { id } = await params
-    await prisma.chat.update({
-      where: { id },
-      data: { deletedAt: new Date() }
-    })
+    await memoryStore.deleteChat(id)
 
     return NextResponse.json({ success: true })
   } catch (error) {
-    console.error('Error deleting chat:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error deleting chat:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to delete chat' },
+      { error: 'Failed to delete chat', details: errorMessage },
       { status: 500 }
     )
   }

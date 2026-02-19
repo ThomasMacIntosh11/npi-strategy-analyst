@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/session'
-import { prisma } from '@/lib/prisma'
-import { openai, OPENAI_MODEL } from '@/lib/openai'
+import { memoryStore } from '@/lib/memory-store'
 
 // GET all chats
 export async function GET(request: NextRequest) {
@@ -9,17 +8,7 @@ export async function GET(request: NextRequest) {
   if (authError) return authError
 
   try {
-    const chats = await prisma.chat.findMany({
-      where: { deletedAt: null },
-      orderBy: { updatedAt: 'desc' },
-      include: {
-        messages: {
-          take: 1,
-          orderBy: { createdAt: 'desc' }
-        }
-      }
-    })
-
+    const chats = await memoryStore.getAllChats()
     return NextResponse.json({ chats })
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : String(error)
@@ -39,9 +28,7 @@ export async function POST(request: NextRequest) {
   try {
     const { title = 'New Chat' } = await request.json()
 
-    const chat = await prisma.chat.create({
-      data: { title }
-    })
+    const chat = await memoryStore.createChat(title)
 
     if (!chat || !chat.id) {
       throw new Error('Chat creation returned invalid data')

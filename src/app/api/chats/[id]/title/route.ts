@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { requireAuth } from '@/lib/session'
 import { openai, OPENAI_MODEL } from '@/lib/openai'
-import { prisma } from '@/lib/prisma'
+import { memoryStore } from '@/lib/memory-store'
 
 interface Params {
   params: Promise<{
@@ -44,16 +44,14 @@ export async function POST(request: NextRequest, { params }: Params) {
     const title = response.choices[0]?.message?.content?.trim() || 'New Chat'
 
     // Update the chat with the generated title
-    await prisma.chat.update({
-      where: { id },
-      data: { title }
-    })
+    await memoryStore.updateChatTitle(id, title)
 
     return NextResponse.json({ title })
   } catch (error) {
-    console.error('Error generating title:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error generating title:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to generate title' },
+      { error: 'Failed to generate title', details: errorMessage },
       { status: 500 }
     )
   }
