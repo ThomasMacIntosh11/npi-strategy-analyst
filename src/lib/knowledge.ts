@@ -1,4 +1,4 @@
-import { prisma } from './prisma'
+import { knowledgeStore } from './knowledge-store'
 import { createEmbedding, cosineSimilarity } from './openai'
 import fs from 'fs/promises'
 import path from 'path'
@@ -30,15 +30,8 @@ export async function ingestKnowledgeSource(
   content: string,
   version: string = new Date().toISOString()
 ): Promise<number> {
-  // Delete existing source and chunks
-  await prisma.knowledgeSource.deleteMany({
-    where: { name }
-  })
-
-  // Create new source
-  const source = await prisma.knowledgeSource.create({
-    data: { name, version }
-  })
+  // Create new source (deletes existing with same name)
+  const source = await knowledgeStore.createSource(name, version)
 
   // Chunk the content
   const chunks = await chunkText(content)
@@ -48,14 +41,12 @@ export async function ingestKnowledgeSource(
   for (const chunk of chunks) {
     try {
       const embedding = await createEmbedding(chunk)
-      await prisma.knowledgeChunk.create({
-        data: {
-          sourceId: source.id,
-          sourceName: name,
-          content: chunk,
-          embeddingJson: JSON.stringify(embedding)
-        }
-      })
+      await knowledgeStore.createChunk(
+        source.id,
+        name,
+        chunk,
+        JSON.stringify(embedding)
+      )
       count++
     } catch (error) {
       console.error(`Error creating embedding for chunk in ${name}:`, error)
@@ -73,14 +64,7 @@ export async function retrieveRelevantChunks(
   const queryEmbedding = await createEmbedding(query)
   
   // Retrieve all chunks (for workshop scale, this is acceptable)
-  const allChunks = await prisma.knowledgeChunk.findMany({
-    select: {
-      id: true,
-      sourceName: true,
-      content: true,
-      embeddingJson: true
-    }
-  })
+  const allChunks = await knowledgeStore.getAllChunks()
 
   // Calculate similarities
   const chunksWithSimilarity = allChunks.map(chunk => {
