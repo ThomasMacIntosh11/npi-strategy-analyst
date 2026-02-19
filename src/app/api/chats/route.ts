@@ -22,9 +22,10 @@ export async function GET(request: NextRequest) {
 
     return NextResponse.json({ chats })
   } catch (error) {
-    console.error('Error fetching chats:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error fetching chats:', errorMessage)
     return NextResponse.json(
-      { error: 'Failed to fetch chats' },
+      { error: 'Failed to fetch chats', details: errorMessage },
       { status: 500 }
     )
   }
