@@ -1,0 +1,59 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model UserSession {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+}
+
+model Chat {
+  id        String    @id @default(cuid())
+  title     String    @default("New Chat")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  messages  Message[]
+
+  @@index([createdAt])
+  @@index([updatedAt])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  role      String // 'user' | 'assistant' | 'system'
+  content   String
+  createdAt DateTime @default(now())
+  chat      Chat     @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@index([chatId])
+  @@index([createdAt])
+}
+
+model KnowledgeSource {
+  id        String           @id @default(cuid())
+  name      String           @unique
+  version   String
+  updatedAt DateTime         @updatedAt
+  chunks    KnowledgeChunk[]
+}
+
+model KnowledgeChunk {
+  id             String          @id @default(cuid())
+  sourceId       String
+  sourceName     String
+  content        String
+  embeddingJson  String // JSON array of embedding vector
+  createdAt      DateTime        @default(now())
+  source         KnowledgeSource @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+
+  @@index([sourceId])
+  @@index([sourceName])
+}

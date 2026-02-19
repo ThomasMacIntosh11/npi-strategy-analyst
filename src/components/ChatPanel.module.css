@@ -1,0 +1,287 @@
+.chatPanel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+}
+
+.emptyState {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-xl);
+}
+
+.emptyContent {
+  text-align: center;
+  max-width: 500px;
+}
+
+.emptyContent h2 {
+  font-size: 1.875rem;
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
+}
+
+.emptyContent p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.startBtn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 1rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.startBtn:hover {
+  background: var(--color-primary-hover);
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-xl);
+}
+
+.message {
+  margin-bottom: var(--spacing-xl);
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-start;
+}
+
+.message.user {
+  flex-direction: row-reverse;
+}
+
+.messageContent {
+  max-width: 70%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.message.user .messageContent {
+  background: var(--color-primary);
+  color: white;
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.message.assistant .messageContent {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.messageContent p {
+  margin-bottom: var(--spacing-md);
+}
+
+.messageContent p:last-child {
+  margin-bottom: 0;
+}
+
+.messageContent h1,
+.messageContent h2,
+.messageContent h3 {
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.messageContent h1:first-child,
+.messageContent h2:first-child,
+.messageContent h3:first-child {
+  margin-top: 0;
+}
+
+.messageContent ul,
+.messageContent ol {
+  margin-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.messageContent li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.messageContent strong {
+  font-weight: 600;
+}
+
+.messageContent code {
+  font-size: 0.875em;
+}
+
+.streaming {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.copyBtn {
+  background: transparent;
+  border: 1px solid transparent;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  opacity: 0.5;
+  transition: all 0.2s;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.message:hover .copyBtn {
+  opacity: 1;
+  border-color: var(--border-color);
+  color: var(--text-secondary);
+}
+
+.copyBtn:hover {
+  background: var(--bg-tertiary);
+  color: var(--text-primary) !important;
+}
+
+.typingIndicator {
+  display: flex;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-lg);
+}
+
+.typingIndicator span {
+  width: 8px;
+  height: 8px;
+  background: var(--text-tertiary);
+  border-radius: 50%;
+  animation: bounce 1.4s infinite ease-in-out;
+}
+
+.typingIndicator span:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typingIndicator span:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+.inputArea {
+  border-top: 1px solid var(--border-color);
+  padding: var(--spacing-lg);
+  background: var(--bg-secondary);
+}
+
+.controls {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.controls input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.controls select {
+  padding: var(--spacing-sm);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.inputRow {
+  display: flex;
+  gap: var(--spacing-md);
+  align-items: flex-end;
+}
+
+.inputRow textarea {
+  flex: 1;
+  padding: var(--spacing-md);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  resize: none;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+.inputRow textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+.inputRow textarea:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.sendBtn,
+.stopBtn {
+  padding: var(--spacing-md) var(--spacing-xl);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.sendBtn {
+  background: var(--color-primary);
+  color: white;
+}
+
+.sendBtn:hover:not(:disabled) {
+  background: var(--color-primary-hover);
+}
+
+.sendBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.stopBtn {
+  background: var(--color-danger);
+  color: white;
+}
+
+.stopBtn:hover {
+  opacity: 0.9;
+}
