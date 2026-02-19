@@ -43,11 +43,16 @@ export async function POST(request: NextRequest) {
       data: { title }
     })
 
+    if (!chat || !chat.id) {
+      throw new Error('Chat creation returned invalid data')
+    }
+
     return NextResponse.json({ chat })
   } catch (error) {
-    console.error('Error creating chat:', error)
+    const errorMessage = error instanceof Error ? error.message : String(error)
+    console.error('Error creating chat:', errorMessage, error)
     return NextResponse.json(
-      { error: 'Failed to create chat' },
+      { error: 'Failed to create chat', details: errorMessage },
       { status: 500 }
     )
   }

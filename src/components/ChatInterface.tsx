@@ -39,10 +39,20 @@ export default function ChatInterface() {
   const loadChats = async () => {
     try {
       const response = await fetch('/api/chats')
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.details || 'Failed to load chats')
+      }
       const data = await response.json()
-      setChats(data.chats || [])
+      if (Array.isArray(data.chats)) {
+        setChats(data.chats)
+      } else {
+        console.warn('Invalid chats response format:', data)
+        setChats([])
+      }
     } catch (error) {
       console.error('Failed to load chats:', error)
+      alert(`Failed to load chats: ${error instanceof Error ? error.message : String(error)}`)
     } finally {
       setLoading(false)
     }
@@ -51,8 +61,15 @@ export default function ChatInterface() {
   const loadChat = async (chatId: string) => {
     try {
       const response = await fetch(`/api/chats/${chatId}`)
+      if (!response.ok) {
+        throw new Error('Failed to load chat')
+      }
       const data = await response.json()
-      setCurrentChat(data.chat)
+      if (data.chat && data.chat.id) {
+        setCurrentChat(data.chat)
+      } else {
+        throw new Error('Invalid chat response')
+      }
     } catch (error) {
       console.error('Failed to load chat:', error)
     }
@@ -65,12 +82,21 @@ export default function ChatInterface() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: 'New Chat' }),
       })
+      if (!response.ok) {
+        const error = await response.json()
+        throw new Error(error.details || 'Failed to create chat')
+      }
       const data = await response.json()
       const newChat = data.chat
-      setChats([newChat, ...chats])
-      setCurrentChatId(newChat.id)
+      if (newChat && newChat.id) {
+        setChats([newChat, ...chats])
+        setCurrentChatId(newChat.id)
+      } else {
+        throw new Error('Invalid chat response from server')
+      }
     } catch (error) {
       console.error('Failed to create chat:', error)
+      alert(`Failed to create chat: ${error instanceof Error ? error.message : String(error)}`)
     }
   }
 
