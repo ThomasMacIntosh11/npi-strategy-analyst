@@ -69,6 +69,11 @@ export default function ChatPanel({ chat, onChatUpdate, onNewChat }: ChatPanelPr
         signal: controller.signal,
       })
 
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.details || errorData.error || `API error: ${response.status}`)
+      }
+
       const reader = response.body?.getReader()
       const decoder = new TextDecoder()
 
