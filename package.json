@@ -11,26 +11,24 @@
     "db:migrate": "prisma migrate dev",
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
-    "render:build": "npm install --include=dev && npx prisma generate && npm run build",
+    "render:build": "npm install && npx prisma generate && npm run build",
     "render:start": "npx prisma db push --accept-data-loss && npm start"
   },
   "dependencies": {
     "@prisma/client": "^5.19.0",
+    "@types/markdown-it": "^14.1.1",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "eventsource-parser": "^1.1.2",
     "iron-session": "^8.0.1",
     "markdown-it": "^14.1.0",
     "next": "^14.2.3",
     "openai": "^4.52.0",
+    "prisma": "^5.19.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-markdown": "^9.0.1"
-  },
-  "devDependencies": {
-    "@types/markdown-it": "^14.1.1",
-    "@types/node": "^20.14.2",
-    "@types/react": "^18.3.3",
-    "@types/react-dom": "^18.3.0",
-    "prisma": "^5.19.0",
+    "react-markdown": "^9.0.1",
     "typescript": "^5.4.5"
   }
 }
