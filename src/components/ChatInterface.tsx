@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import ChatPanel from './ChatPanel'
 import styles from './ChatInterface.module.css'
+import { BrowserStorage } from '@/lib/browser-storage'
 
 export interface Chat {
   id: string
@@ -27,6 +28,7 @@ export default function ChatInterface() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
+    BrowserStorage.init()
     loadChats()
   }, [])
 
@@ -38,6 +40,17 @@ export default function ChatInterface() {
 
   const loadChats = async () => {
     try {
+      // Load from localStorage first for instant display
+      const storedChatIds = BrowserStorage.getAllChatIds()
+      const storedChats = storedChatIds
+        .map(id => BrowserStorage.getChat(id))
+        .filter((chat): chat is Chat => chat !== null)
+      
+      if (storedChats.length > 0) {
+        setChats(storedChats)
+      }
+
+      // Then fetch latest from server and update
       const response = await fetch('/api/chats')
       if (!response.ok) {
         const error = await response.json()
@@ -46,13 +59,19 @@ export default function ChatInterface() {
       const data = await response.json()
       if (Array.isArray(data.chats)) {
         setChats(data.chats)
+        // Cache in localStorage
+        data.chats.forEach((chat: Chat) => BrowserStorage.saveChat(chat))
       } else {
         console.warn('Invalid chats response format:', data)
-        setChats([])
+        if (storedChats.length === 0) {
+          setChats([])
+        }
       }
     } catch (error) {
       console.error('Failed to load chats:', error)
-      alert(`Failed to load chats: ${error instanceof Error ? error.message : String(error)}`)
+      if (chats.length === 0) {
+        alert(`Failed to load chats: ${error instanceof Error ? error.message : String(error)}`)
+      }
     } finally {
       setLoading(false)
     }
@@ -60,6 +79,13 @@ export default function ChatInterface() {
 
   const loadChat = async (chatId: string) => {
     try {
+      // Load from localStorage first
+      const stored = BrowserStorage.getChat(chatId)
+      if (stored) {
+        setCurrentChat(stored)
+      }
+
+      // Then fetch latest from server
       const response = await fetch(`/api/chats/${chatId}`)
       if (!response.ok) {
         throw new Error('Failed to load chat')
@@ -67,6 +93,7 @@ export default function ChatInterface() {
       const data = await response.json()
       if (data.chat && data.chat.id) {
         setCurrentChat(data.chat)
+        BrowserStorage.saveChat(data.chat)
       } else {
         throw new Error('Invalid chat response')
       }
@@ -90,6 +117,7 @@ export default function ChatInterface() {
       const newChat = data.chat
       if (newChat && newChat.id) {
         setChats([newChat, ...chats])
+        BrowserStorage.saveChat(newChat)
         setCurrentChatId(newChat.id)
       } else {
         throw new Error('Invalid chat response from server')
@@ -103,6 +131,7 @@ export default function ChatInterface() {
   const handleDeleteChat = async (chatId: string) => {
     try {
       await fetch(`/api/chats/${chatId}`, { method: 'DELETE' })
+      BrowserStorage.deleteChat(chatId)
       setChats(chats.filter(c => c.id !== chatId))
       if (currentChatId === chatId) {
         setCurrentChatId(null)
@@ -120,9 +149,14 @@ export default function ChatInterface() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ title: newTitle }),
       })
-      setChats(chats.map(c => c.id === chatId ? { ...c, title: newTitle } : c))
+      const updatedChats = chats.map(c => c.id === chatId ? { ...c, title: newTitle } : c)
+      setChats(updatedChats)
+      const updated = updatedChats.find(c => c.id === chatId)
+      if (updated) BrowserStorage.saveChat(updated)
       if (currentChat?.id === chatId) {
-        setCurrentChat({ ...currentChat, title: newTitle })
+        const newChat = { ...currentChat, title: newTitle }
+        setCurrentChat(newChat)
+        BrowserStorage.saveChat(newChat)
       }
     } catch (error) {
       console.error('Failed to rename chat:', error)

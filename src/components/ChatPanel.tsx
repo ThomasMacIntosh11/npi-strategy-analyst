@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import ReactMarkdown from 'react-markdown'
 import styles from './ChatPanel.module.css'
 import { Chat, Message } from './ChatInterface'
+import { BrowserStorage } from '@/lib/browser-storage'
 
 interface ChatPanelProps {
   chat: Chat | null
@@ -26,6 +27,13 @@ export default function ChatPanel({ chat, onChatUpdate, onNewChat }: ChatPanelPr
   useEffect(() => {
     scrollToBottom()
   }, [chat?.messages, streamingMessage])
+
+  // Persist chat to browser storage whenever it updates
+  useEffect(() => {
+    if (chat) {
+      BrowserStorage.saveChat(chat)
+    }
+  }, [chat])
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
