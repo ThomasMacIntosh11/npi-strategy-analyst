@@ -324,53 +324,65 @@ export const NPI_INITIATIVES = [
   },
   {
     id: 27,
-    name: "Implement a new brand standard for NPI and deploy",
+    name: "Bring back in person learning at the grassroots level",
     department: "Public & Member Relations",
     type: "Strategic",
-    description: "Implement a new brand standard for NPI and deploy",
+    description: "Bring back in person learning at the grassroots level",
     proposingDepartment: "Public & Member Relations",
-    focusArea: "5",
+    focusArea: "4",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
   },
   {
     id: 28,
-    name: "Develop and sell premium products",
-    department: "Public & Member Relations",
-    type: "Strategic",
-    description: "Develop and sell premium products",
-    proposingDepartment: "Public & Member Relations",
-    focusArea: "5",
-    crossFunctional: true,
-    staffRequired: "TBD",
-    effortSignal: "High"
-  },
-
-  // Focus Area 5 - Efficiency & technology enhancements
-  {
-    id: 29,
-    name: "Automate payroll review for all members",
+    name: "Implement a loyalty rewards program for members",
     department: "Professional Standards & Education",
     type: "Strategic",
-    description: "Automate payroll review for all members",
+    description: "Implement a loyalty rewards program for members",
     proposingDepartment: "Professional Standards & Education",
-    focusArea: "5",
+    focusArea: "4",
     crossFunctional: true,
     staffRequired: "TBD",
-    effortSignal: "High"
+    effortSignal: "Medium"
+  },
+
+  // Focus Area 4 - Community engagement for members
+  {
+    id: 29,
+    name: "Establish a national online payroll professional community",
+    department: "Corporate Services",
+    type: "Strategic",
+    description: "Establish a national online payroll professional community",
+    proposingDepartment: "Corporate Services",
+    focusArea: "4",
+    crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium"
   },
   {
     id: 30,
-    name: "Build software to help our members track, summarize, and audit payroll",
-    department: "Professional Standards & Education",
+    name: "Repackage and launch a financial wellness product for employees",
+    department: "Multiple Teams",
     type: "Strategic",
-    description: "Build software to help our members track, summarize, and audit payroll",
-    proposingDepartment: "Professional Standards & Education",
+    description: "Repackage and launch a financial wellness product for employees",
+    proposingDepartment: "Multiple Teams",
     focusArea: "5",
     crossFunctional: true,
     staffRequired: "TBD",
-    effortSignal: "High"
+    effortSignal: "Medium-High"
+  },
+  {
+    id: 31,
+    name: "Create payroll resources by life-stage for working Canadians",
+    department: "Corporate Services",
+    type: "Strategic",
+    description: "Create payroll resources by life-stage for working Canadians",
+    proposingDepartment: "Corporate Services",
+    focusArea: "5",
+    crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium"
   }
 ]
 
