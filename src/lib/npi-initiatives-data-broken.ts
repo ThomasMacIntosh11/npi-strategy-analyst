@@ -1,16 +1,18 @@
+// NPI Strategic Initiatives List
+// Source: Vision 2030 Workshop Materials
+
 // NPI Strategic Initiatives List  
 // Source: Vision 2030 Workshop Materials - Individual bullet point initiatives
 
 export const NPI_INITIATIVES = [
-  // Bucket 1 - Career pathways & growth initiatives (ALL ORANGE = Professional Standards & Education)
+  // Initiative 1 - Career pathways & growth initiatives
   {
     id: 1,
     name: "Develop self-paced, self-serve digital and stackable microlearning programs",
-    department: "Multiple Teams",
+    department: "Professional Standards & Education",
     type: "Strategic",
     description: "Develop self-paced, self-serve digital and stackable microlearning programs for payroll adjacent roles, potentially in partnership with other organizations",
-    proposingDepartment: "Multiple Teams",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -18,11 +20,10 @@ export const NPI_INITIATIVES = [
   {
     id: 2,
     name: "Provide partners, PCP certificate candidates with a white label technology sandbox",
-    department: "Multiple Teams",
+    department: "Professional Standards & Education",
     type: "Strategic", 
     description: "Provide partners, PCP certificate candidates with a white label technology sandbox of simulated payroll data for scenario-based assessments and hands-on practice",
-    proposingDepartment: "Multiple Teams",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -30,11 +31,10 @@ export const NPI_INITIATIVES = [
   {
     id: 3,
     name: "Establish NPI as the primary talent marketplace connecting employers with payroll professionals",
-    department: "Multiple Teams",
+    department: "Professional Standards & Education",
     type: "Strategic",
     description: "Establish NPI as the primary talent marketplace connecting employers with payroll professionals (recruitment service)",
-    proposingDepartment: "Multiple Teams", 
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education", 
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -42,11 +42,10 @@ export const NPI_INITIATIVES = [
   {
     id: 4,
     name: "Develop customized career journey maps for early career non-members & members",
-    department: "Government Relations & Legislative Compliance",
+    department: "Professional Standards & Education",
     type: "Strategic",
     description: "Develop customized career journey maps for early career non-members & members",
-    proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -54,11 +53,10 @@ export const NPI_INITIATIVES = [
   {
     id: 5,
     name: "Add a practicum pathway to the PCP designation",
-    department: "Public & Member Relations", 
+    department: "Professional Standards & Education", 
     type: "Strategic",
     description: "Add a practicum pathway to the PCP designation",
-    proposingDepartment: "Public & Member Relations",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: false,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -66,11 +64,10 @@ export const NPI_INITIATIVES = [
   {
     id: 6,
     name: "Build a balanced product portfolio and a product strategy for PD",
-    department: "Public & Member Relations",
+    department: "Professional Standards & Education",
     type: "Strategic",
     description: "Build a balanced product portfolio and a product strategy for PD",
-    proposingDepartment: "Public & Member Relations",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: true,
     staffRequired: "TBD", 
     effortSignal: "High"
@@ -82,7 +79,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Establish partnerships with other professional education organizations",
     proposingDepartment: "Professional Standards & Education",
-    focusArea: "1",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -94,7 +90,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Build an internship program for students", 
     proposingDepartment: "Professional Standards & Education",
-    focusArea: "1",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -102,11 +97,10 @@ export const NPI_INITIATIVES = [
   {
     id: 9,
     name: "Build a peer learning network/platform for AI in payroll",
-    department: "Corporate Services",
+    department: "Professional Standards & Education",
     type: "Strategic", 
     description: "Build a peer learning network/platform for AI in payroll",
-    proposingDepartment: "Corporate Services",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -114,25 +108,23 @@ export const NPI_INITIATIVES = [
   {
     id: 10,
     name: "Offer a specialization for PCP/PLP designations",
-    department: "Corporate Services",
+    department: "Professional Standards & Education",
     type: "Strategic",
     description: "Offer a specialization for PCP/PLP designations",
-    proposingDepartment: "Corporate Services",
-    focusArea: "1",
+    proposingDepartment: "Professional Standards & Education",
     crossFunctional: false,
     staffRequired: "TBD", 
     effortSignal: "Low"
   },
 
-  // Bucket 2.1 - Compliance advisory services for small businesses (ALL GREEN = Government Relations & Legislative Compliance)
+  // Initiative 2.1 - Compliance advisory services for small businesses
   {
     id: 11,
     name: "Create a triage system for incoming enquiries that ensures margin is preserved",
-    department: "Multiple Teams",
+    department: "Government Relations & Legislative Compliance",
     type: "Strategic", 
     description: "Create a triage system for incoming enquiries that ensures margin is preserved for high-cost calls",
-    proposingDepartment: "Multiple Teams",
-    focusArea: "2.1",
+    proposingDepartment: "Government Relations & Legislative Compliance",
     crossFunctional: false,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -144,7 +136,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Develop tiered pricing and service levels", 
     proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "2.1",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -156,7 +147,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Package a final, market-ready version of AskPat Pro",
     proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "2.1",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -168,7 +158,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Develop a voice-to-talk system for internal AskPat Pro that improves InfoLine effort and consistency",
     proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "2.1",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -176,11 +165,10 @@ export const NPI_INITIATIVES = [
   {
     id: 15,
     name: "Develop an API for NPI's knowledge base to power external AI tools from PSSPs",
-    department: "Public & Member Relations", 
+    department: "Government Relations & Legislative Compliance", 
     type: "Strategic",
     description: "Develop an API for NPI's knowledge base to power external AI tools from PSSPs",
-    proposingDepartment: "Public & Member Relations",
-    focusArea: "2.1",
+    proposingDepartment: "Government Relations & Legislative Compliance",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -188,11 +176,10 @@ export const NPI_INITIATIVES = [
   {
     id: 16,
     name: "Develop a self-serve SMB hub that offers resources and short advisory sessions",
-    department: "Corporate Services", 
+    department: "Government Relations & Legislative Compliance", 
     type: "Strategic",
     description: "Develop a self-serve SMB hub that offers resources and short advisory sessions for unique situations",
-    proposingDepartment: "Corporate Services",
-    focusArea: "2.1",
+    proposingDepartment: "Government Relations & Legislative Compliance",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -200,17 +187,16 @@ export const NPI_INITIATIVES = [
   {
     id: 17,
     name: "Create an online tool that helps businesses assess payroll compliance",
-    department: "Corporate Services",
+    department: "Government Relations & Legislative Compliance",
     type: "Strategic",
     description: "Create an online tool that helps businesses assess payroll compliance", 
-    proposingDepartment: "Corporate Services",
-    focusArea: "2.1",
+    proposingDepartment: "Government Relations & Legislative Compliance",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
   },
 
-  // Bucket 2.2 - Payroll leadership advisory services for medium-large firms (MIXED COLORS)
+  // Initiative 2.2 - Payroll leadership advisory services for medium-large firms  
   {
     id: 18,
     name: "Establish a Volunteer SME Knowledge Network",
@@ -218,7 +204,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Establish a Volunteer SME Knowledge Network",
     proposingDepartment: "Public & Member Relations",
-    focusArea: "2.2",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -230,7 +215,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic", 
     description: "Launch a Member-Based Advisory Marketplace",
     proposingDepartment: "Public & Member Relations",
-    focusArea: "2.2",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -238,17 +222,16 @@ export const NPI_INITIATIVES = [
   {
     id: 20,
     name: "Launch implementation and risk assessment audit service",
-    department: "Corporate Services",
+    department: "Government Relations & Legislative Compliance",
     type: "Strategic",
     description: "Launch implementation and risk assessment audit service",
-    proposingDepartment: "Corporate Services", 
-    focusArea: "2.2",
+    proposingDepartment: "Government Relations & Legislative Compliance", 
     crossFunctional: true,
     staffRequired: "TBD", 
     effortSignal: "High"
   },
 
-  // Focus Area 3 - Policy advisory, lobbying, op. support, & research for gov't
+  // Initiative 3 - Policy advisory, lobbying, op. support, & research for gov't
   {
     id: 21,
     name: "Develop and launch a campaign lobbying for real-time payroll",
@@ -256,7 +239,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic", 
     description: "Develop and launch a campaign lobbying for real-time payroll",
     proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "3",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
@@ -268,7 +250,6 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Develop a research, note-taking and summarizing writing tool for Government committee meetings that improves cost and effort allocation",
     proposingDepartment: "Government Relations & Legislative Compliance",
-    focusArea: "3",
     crossFunctional: true, 
     staffRequired: "TBD",
     effortSignal: "Medium"
@@ -276,17 +257,16 @@ export const NPI_INITIATIVES = [
   {
     id: 23,
     name: "Develop a policy think tank owned and operated by NPI",
-    department: "Corporate Services",
+    department: "Government Relations & Legislative Compliance",
     type: "Strategic", 
     description: "Develop a policy think tank owned and operated by NPI",
-    proposingDepartment: "Corporate Services",
-    focusArea: "3",
+    proposingDepartment: "Government Relations & Legislative Compliance",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
   },
 
-  // Focus Area 4 - Community engagement for members
+  // Initiative 4 - Community engagement for members  
   {
     id: 24,
     name: "Sell year-long pre-packaged experiences by persona",
@@ -294,83 +274,127 @@ export const NPI_INITIATIVES = [
     type: "Strategic",
     description: "Sell year-long pre-packaged experiences by persona", 
     proposingDepartment: "Public & Member Relations",
-    focusArea: "4",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
   },
   {
     id: 25,
-    name: "Expand the branch network and discontinue regional councils",
+    name: "Expand the national network and discontinue regional councils",
     department: "Public & Member Relations",
     type: "Strategic",
-    description: "Expand the branch network and discontinue regional councils", 
+    description: "Expand the national network and discontinue regional councils", 
     proposingDepartment: "Public & Member Relations",
-    focusArea: "4",
-    crossFunctional: true,
-    staffRequired: "TBD",
-    effortSignal: "High"
-  },
-  {    id: 26,
-    name: "Implement a Customer Relationship Management (CRM) system to support members and branches",
-    department: "Corporate Services",
-    type: "Strategic",
-    description: "Implement a Customer Relationship Management (CRM) system to support members and branches",
-    proposingDepartment: "Corporate Services",
-    focusArea: "5",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "High"
   },
   {
+    id: 26,
+    name: "Bring back in person learning at the grassroots level",
+    department: "Professional Standards & Education",
+    type: "Strategic", 
+    description: "Bring back in person learning at the grassroots level",
+    proposingDepartment: "Professional Standards & Education",
+    crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium"
+  },
+  {
     id: 27,
-    name: "Implement a new brand standard for NPI and deploy",
+    name: "Implement a loyalty rewards program for members",
     department: "Public & Member Relations",
     type: "Strategic",
-    description: "Implement a new brand standard for NPI and deploy",
+    description: "Implement a loyalty rewards program for members", 
     proposingDepartment: "Public & Member Relations",
-    focusArea: "5",
     crossFunctional: true,
     staffRequired: "TBD",
     effortSignal: "Medium"
   },
   {
     id: 28,
-    name: "Develop and sell premium products",
+    name: "Establish a national online payroll professional community",
     department: "Public & Member Relations",
     type: "Strategic",
-    description: "Develop and sell premium products",
-    proposingDepartment: "Public & Member Relations",
-    focusArea: "5",
+    description: "Establish a national online payroll professional community",
+    proposingDepartment: "Public & Member Relations", 
     crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium"
+  },
+
+  // Initiative 5 - Financial wellness products for working Canadians
+  {
+    id: 29,
+    name: "Repackage and launch a national financial wellness product for employers", 
+    department: "Multiple Teams",
+    type: "Strategic",
+    description: "Repackage and launch a national financial wellness product for employers (e.g., simple, employee memo product)",
+    proposingDepartment: "Multiple Teams",
+    crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium-High"
+  },
+  {
+    id: 30,
+    name: "Create payroll resources by life-stage for working Canadians",
+    department: "Multiple Teams", 
+    type: "Strategic",
+    description: "Create payroll resources by life-stage for working Canadians",
+    proposingDepartment: "Multiple Teams",
+    crossFunctional: true,
+    staffRequired: "TBD",
+    effortSignal: "Medium"
+  }
+]
+
+// Helper function to get initiative by name (case-insensitive)
+export function getInitiativeByName(name: string) {
+  return NPI_INITIATIVES.find(init => init.name.toLowerCase() === name.toLowerCase())
+}
+
+// Helper function to get initiatives by department
+export function getInitiativesByDepartment(department: string) {
+  return NPI_INITIATIVES.filter(init => init.department.toLowerCase() === department.toLowerCase())
+}
+
+// Helper function to get initiatives by type
+export function getInitiativesByType(type: "Strategic" | "Operational" | "Optimization") {
+  return NPI_INITIATIVES.filter(init => init.type === type)
+}
+
+// Get all initiative names for easy reference
+export function getAllInitiativeNames(): string[] {
+  return NPI_INITIATIVES.map(init => init.name)
+}
     staffRequired: "TBD",
     effortSignal: "High"
   },
 
-  // Focus Area 5 - Efficiency & technology enhancements
+  // Initiative 4
   {
-    id: 29,
-    name: "Automate payroll review for all members",
-    department: "Professional Standards & Education",
+    id: 5, 
+    name: "Community engagement for members",
+    department: "Public & Member Relations",
     type: "Strategic",
-    description: "Automate payroll review for all members",
-    proposingDepartment: "Professional Standards & Education",
-    focusArea: "5",
+    description: "Sell year-long pre-packaged experiences by persona. Expand the national network and discontinue regional councils. Bring back in person learning at the grassroots level. Implement a loyalty rewards program for members. Establish a national online payroll professional community.",
+    proposingDepartment: "Public & Member Relations",
     crossFunctional: true,
     staffRequired: "TBD",
-    effortSignal: "High"
+    effortSignal: "Medium"
   },
+
+  // Initiative 5
   {
-    id: 30,
-    name: "Build software to help our members track, summarize, and audit payroll",
-    department: "Professional Standards & Education",
+    id: 6,
+    name: "Financial wellness products for working Canadians", 
+    department: "Multiple Teams",
     type: "Strategic",
-    description: "Build software to help our members track, summarize, and audit payroll",
-    proposingDepartment: "Professional Standards & Education",
-    focusArea: "5",
+    description: "Repackage and launch a national financial wellness product for employers (e.g., simple, employee memo product). Create payroll resources by life-stage for working Canadians.",
+    proposingDepartment: "Multiple Teams",
     crossFunctional: true,
-    staffRequired: "TBD",
-    effortSignal: "High"
+    staffRequired: "TBD", 
+    effortSignal: "Medium-High"
   }
 ]
 

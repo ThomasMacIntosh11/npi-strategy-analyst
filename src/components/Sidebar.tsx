@@ -124,8 +124,20 @@ export default function Sidebar({
       </div>
 
       <div className={styles.footer}>
+        <button 
+          onClick={() => router.push('/knowledge')} 
+          className={styles.linkBtn}
+        >
+          📚 Knowledge
+        </button>
+        <button 
+          onClick={() => router.push('/dvf')} 
+          className={styles.linkBtn}
+        >
+          📊 DVF Matrix
+        </button>
         <button onClick={handleLogout} className={styles.linkBtn}>
-          Logout
+          🚪 Logout
         </button>
       </div>
     </div>
