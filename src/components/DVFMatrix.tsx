@@ -140,14 +140,14 @@ export default function DVFMatrix() {
         <div className={styles.instructions}>
           <h2>Desirability, Viability, Feasibility Framework</h2>
           <p>Score each initiative from 1-5 on the three dimensions. As you input scores, initiatives will appear on the matrix below.</p>
-          <div className={styles.legendGrid}>
-            <div className={styles.legendItem}>
+          <div className={styles.definitionGrid}>
+            <div className={styles.definitionItem}>
               <strong>Desirability (1-5):</strong> Does this solve a real, meaningful problem that customers genuinely care about?
             </div>
-            <div className={styles.legendItem}>
+            <div className={styles.definitionItem}>
               <strong>Viability (Y-axis, 1-5):</strong> Will it generate sustainable value for the organization?
             </div>
-            <div className={styles.legendItem}>
+            <div className={styles.definitionItem}>
               <strong>Feasibility (X-axis, 1-5):</strong> Can we realistically build and deliver this with the resources available?
             </div>
           </div>

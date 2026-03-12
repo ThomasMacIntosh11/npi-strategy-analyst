@@ -317,6 +317,29 @@
   margin-bottom: var(--spacing-md);
 }
 
+.definitionGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+.definitionItem {
+  padding: var(--spacing-md);
+  background: var(--bg-primary);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.definitionItem strong {
+  color: var(--text-primary);
+  display: block;
+  margin-bottom: var(--spacing-xs);
+}
+
 .legendGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
