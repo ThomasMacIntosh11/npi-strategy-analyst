@@ -311,19 +311,8 @@ export const NPI_INITIATIVES = [
     staffRequired: "TBD",
     effortSignal: "High"
   },
-  {    id: 26,
-    name: "Implement a Customer Relationship Management (CRM) system to support members and branches",
-    department: "Corporate Services",
-    type: "Strategic",
-    description: "Implement a Customer Relationship Management (CRM) system to support members and branches",
-    proposingDepartment: "Corporate Services",
-    focusArea: "5",
-    crossFunctional: true,
-    staffRequired: "TBD",
-    effortSignal: "High"
-  },
   {
-    id: 27,
+    id: 26,
     name: "Bring back in person learning at the grassroots level",
     department: "Public & Member Relations",
     type: "Strategic",
@@ -335,7 +324,7 @@ export const NPI_INITIATIVES = [
     effortSignal: "Medium"
   },
   {
-    id: 28,
+    id: 27,
     name: "Implement a loyalty rewards program for members",
     department: "Professional Standards & Education",
     type: "Strategic",
@@ -349,7 +338,7 @@ export const NPI_INITIATIVES = [
 
   // Focus Area 4 - Community engagement for members
   {
-    id: 29,
+    id: 28,
     name: "Establish a national online payroll professional community",
     department: "Corporate Services",
     type: "Strategic",
@@ -361,7 +350,7 @@ export const NPI_INITIATIVES = [
     effortSignal: "Medium"
   },
   {
-    id: 30,
+    id: 29,
     name: "Repackage and launch a financial wellness product for employees",
     department: "Multiple Teams",
     type: "Strategic",
@@ -373,7 +362,7 @@ export const NPI_INITIATIVES = [
     effortSignal: "Medium-High"
   },
   {
-    id: 31,
+    id: 30,
     name: "Create payroll resources by life-stage for working Canadians",
     department: "Corporate Services",
     type: "Strategic",
