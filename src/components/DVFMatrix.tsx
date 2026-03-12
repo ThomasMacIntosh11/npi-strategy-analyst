@@ -95,26 +95,34 @@ export default function DVFMatrix() {
 
     Object.values(positionGroups).forEach(group => {
       if (group.length === 1) {
-        // Single dot - use exact position
+        // Single dot - use exact position with padding for radius
         const { initiative, scores } = group[0]
-        const x = scores.feasibility * 100 - 50
-        const y = 500 - (scores.viability * 100 - 50)
         const radius = Math.max(8, scores.desirability * 6)
+        const padding = radius + 5 // Extra padding to ensure no clipping
+        const x = Math.max(padding, Math.min(500 - padding, scores.feasibility * 100 - 50))
+        const y = Math.max(padding, Math.min(500 - padding, 500 - (scores.viability * 100 - 50)))
         
         positionedInitiatives.push({ initiative, scores, x, y, radius })
       } else {
         // Multiple dots - arrange in a circle around the center point
         const { scores: baseScores } = group[0]
-        const centerX = baseScores.feasibility * 100 - 50
-        const centerY = 500 - (baseScores.viability * 100 - 50)
         const maxRadius = Math.max(...group.map(g => Math.max(8, g.scores.desirability * 6)))
         const offsetRadius = maxRadius + 12 // Space between dots
+        const totalRadius = maxRadius + offsetRadius
+        const padding = totalRadius + 5 // Ensure no clipping for offset dots
+        
+        const centerX = Math.max(padding, Math.min(500 - padding, baseScores.feasibility * 100 - 50))
+        const centerY = Math.max(padding, Math.min(500 - padding, 500 - (baseScores.viability * 100 - 50)))
         
         group.forEach(({ initiative, scores }, index) => {
           const angle = (2 * Math.PI * index) / group.length
-          const x = centerX + Math.cos(angle) * offsetRadius
-          const y = centerY + Math.sin(angle) * offsetRadius
+          let x = centerX + Math.cos(angle) * offsetRadius
+          let y = centerY + Math.sin(angle) * offsetRadius
           const radius = Math.max(8, scores.desirability * 6)
+          
+          // Ensure offset dots don't go outside bounds
+          x = Math.max(radius + 5, Math.min(500 - radius - 5, x))
+          y = Math.max(radius + 5, Math.min(500 - radius - 5, y))
           
           positionedInitiatives.push({ initiative, scores, x, y, radius })
         })
