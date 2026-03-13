@@ -250,12 +250,11 @@
   text-orientation: mixed;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   font-size: 1.1rem;
   color: var(--text-primary);
   font-weight: 700;
   transform: rotate(180deg);
-  padding-right: var(--spacing-sm);
 }
 
 .xAxisLabel {
@@ -291,7 +290,7 @@
 
 .quadrantLabels .quadrantText {
   fill: var(--text-tertiary);
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
   opacity: 0.6;
   text-anchor: middle;
