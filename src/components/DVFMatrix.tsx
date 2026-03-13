@@ -144,7 +144,7 @@ export default function DVFMatrix() {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1>DVF Matrix</h1>
+        <h1>DVF Matrix:</h1>
         <div className={styles.headerButtons}>
           <button onClick={resetAllScores} className={styles.resetBtn}>
             Reset Scores
@@ -250,7 +250,7 @@ export default function DVFMatrix() {
 
           {/* Matrix Visualization */}
           <div className={styles.matrixPanel}>
-            <h3>DVF Matrix</h3>
+            <h3>DVF Matrix:</h3>
             <div className={styles.matrixContainer}>
               <div className={styles.yAxisLabel}>Viability</div>
               <div className={styles.matrix}>
