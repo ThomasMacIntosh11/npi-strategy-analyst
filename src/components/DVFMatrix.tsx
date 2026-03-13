@@ -56,6 +56,13 @@ export default function DVFMatrix() {
     }))
   }
 
+  const resetAllScores = () => {
+    if (confirm('Are you sure you want to reset all scores? This action cannot be undone.')) {
+      setDvfScores({})
+      localStorage.removeItem('dvfScores')
+    }
+  }
+
   const getInitiativeColor = (initiative: typeof NPI_INITIATIVES[0]) => {
     return DEPARTMENT_COLORS[initiative.department] || '#6B7280'
   }
@@ -138,9 +145,14 @@ export default function DVFMatrix() {
     <div className={styles.container}>
       <div className={styles.header}>
         <h1>DVF Matrix</h1>
-        <button onClick={() => router.push('/')} className={styles.backBtn}>
-          ← Back to Chat
-        </button>
+        <div className={styles.headerButtons}>
+          <button onClick={resetAllScores} className={styles.resetBtn}>
+            Reset Scores
+          </button>
+          <button onClick={() => router.push('/')} className={styles.backBtn}>
+            ← Back to Chat
+          </button>
+        </div>
       </div>
 
       <div className={styles.content}>
