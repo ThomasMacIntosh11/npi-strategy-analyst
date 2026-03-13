@@ -250,18 +250,22 @@
   text-orientation: mixed;
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  color: var(--text-secondary);
-  font-weight: 600;
+  justify-content: flex-end;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  transform: rotate(180deg);
+  padding-right: var(--spacing-sm);
 }
 
 .xAxisLabel {
   grid-area: x-axis;
-  text-align: center;
-  font-size: 1rem;
-  color: var(--text-secondary);
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-weight: 700;
 }
 
 .matrix {
@@ -279,16 +283,18 @@
   display: block;
 }
 
-.gridLines line {
-  stroke: var(--border-color);
-  stroke-width: 0.5;
-  opacity: 0.5;
+.axisLines .axisLine {
+  stroke: var(--text-secondary);
+  stroke-width: 2;
+  opacity: 0.8;
 }
 
 .quadrantLabels .quadrantText {
   fill: var(--text-tertiary);
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
+  opacity: 0.6;
+  text-anchor: middle;
 }
 
 .dataPoint {

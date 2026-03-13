@@ -255,29 +255,27 @@ export default function DVFMatrix() {
               <div className={styles.yAxisLabel}>Viability</div>
               <div className={styles.matrix}>
                 <svg viewBox="0 0 500 500" className={styles.matrixSvg}>
-                  {/* Grid lines */}
-                  <g className={styles.gridLines}>
-                    {[1, 2, 3, 4, 5].map(i => (
-                      <g key={i}>
-                        <line x1={i * 100} y1={0} x2={i * 100} y2={500} />
-                        <line x1={0} y1={500 - i * 100} x2={500} y2={500 - i * 100} />
-                      </g>
-                    ))}
+                  {/* Axis lines */}
+                  <g className={styles.axisLines}>
+                    {/* X axis (horizontal) */}
+                    <line x1={0} y1={250} x2={500} y2={250} className={styles.axisLine} />
+                    {/* Y axis (vertical) */}
+                    <line x1={250} y1={0} x2={250} y2={500} className={styles.axisLine} />
                   </g>
                   
                   {/* Quadrant labels */}
                   <g className={styles.quadrantLabels}>
-                    <text x={125} y={60} textAnchor="middle" className={styles.quadrantText}>
-                      Lower priority initiatives
-                    </text>
-                    <text x={375} y={60} textAnchor="middle" className={styles.quadrantText}>
+                    <text x={125} y={125} textAnchor="middle" dominantBaseline="central" className={styles.quadrantText}>
                       Strategic bets
                     </text>
-                    <text x={125} y={440} textAnchor="middle" className={styles.quadrantText}>
-                      Incremental improvements
-                    </text>
-                    <text x={375} y={440} textAnchor="middle" className={styles.quadrantText}>
+                    <text x={375} y={125} textAnchor="middle" dominantBaseline="central" className={styles.quadrantText}>
                       High impact / easier to implement
+                    </text>
+                    <text x={125} y={375} textAnchor="middle" dominantBaseline="central" className={styles.quadrantText}>
+                      Lower priority initiatives
+                    </text>
+                    <text x={375} y={375} textAnchor="middle" dominantBaseline="central" className={styles.quadrantText}>
+                      Incremental improvements
                     </text>
                   </g>
 
